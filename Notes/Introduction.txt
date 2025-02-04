@@ -1,0 +1,64 @@
+JavaScript
+
+- JavaScript is a light weight interpreted and JIT compiled programming language.
+- Interpreted allows to translate line-by-line of program.
+- Compiled allows to translate all lines simultaneously at the same time.
+- There are 2 types of compiling techniques
+    a) JIT
+    b) AOT
+- JIT is Just-in-Time, it translates only when requested.
+- AOT is Ahead-of-Time, it translated before request. It is pre-compiled.
+- JavaScript is a language that supports various programming paradigms like
+    a) Functional
+    b) Structural
+    c) Imperative
+    d) Object Oriented etc.
+ 
+- JavaScript is a language, which is used in various application areas like
+    a) Client Side
+    b) Server Side
+    c) Database
+    d) Animation Tools etc.
+
+JavaScript Client Side:
+
+- A client side script can reduce the burden on server.
+- It runs on client machine to handles
+    a) Browser Interactions
+    b) DOM Interactions
+    c) Validations
+    d) State etc..
+- Browser Interactions include details like
+    - window
+    - location
+    - navigator
+    - history
+    - document
+- DOM interactions include
+    - Adding elements
+    - Removing elements
+    - Updating data into elements
+    - Adding styles etc..
+- Validation is the process of  
+    - Verifying user input
+    - Ensure that contradictory and unauthorized data is not get stored into database.
+- State is the process of managing memory
+    - Local Storage
+    - Session Storage
+    - Cookies etc..
+
+Evolution of JavaScript:
+- CERN labs [Council for European Research & Nuclear] developed as script called ECMA Script in early 1990's for a browser called "Mosaic".
+- Netscape Communications started a new browser called "Netscape Navigator" in the early 1995.
+- Netscape appointed "Brendan Eich" to design a client side script for Netscape Navigator browser.
+- Brendan Eich design a script by name "Mocha", which was later renamed to "Live Script".
+- Netscape given the responsibility of Live Script to "Sun Microsystems".
+- Sun Microsystems renamed the script to "JavaScript".
+- In the year 2000 Netscape stopped its services and given the responsibility of JavaScript to "ECMA".
+- ECMA evolves and maintains JavaScript from 2000.
+- The latest version of JavaScript is  "ES15".
+       
+        ECMA Script 2015             ES5
+                      2016            ES6
+                      ...
+                      2024            ES15

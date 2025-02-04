@@ -1,0 +1,155 @@
+JavaScript in Web Page:
+- JavaScript can be
+    a) Inline
+    b) Embedded
+    c) External File
+
+- JavaScript inline allows to write functions directly inside element start tag.
+
+Syntax:
+    <button  onclick="function(){}">  Text  </button>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Print your ticket</h2>
+    <button onclick="window.print()">Print</button>
+</body>
+</html>
+
+- JavaScript can be embedded into page by using  "<script>" element.
+- You can embed in head or body sections.
+- JavaScript MIME type is "text/javascript". It allows JavaScript to translate using an interpreter in browser.
+
+Syntax:
+    <script type="text/javascript">
+        // functions ..
+    </script>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function PrintPage(){
+            window.print();
+        }
+    </script>
+</head>
+<body>
+    <h2>Print your ticket</h2>
+    <button onclick="PrintPage()">Print</button>
+</body>
+</html>
+
+- JavaScript can be from external file.
+- JavaScript file must have extension ".js"
+- You can link them by using <script> element.
+
+            print.js
+      function PrintPage()
+      {
+        window.print();
+      }
+
+    <head>
+       <script src="print.js"> </script>
+    </head>
+    <body>
+        <button onclick="PrintPage()"> Print </button>
+    </body>
+
+- You can minify the JavaScript file for "Production".
+
+FAQ's:
+1. What is the MIME type of JavaScript?
+A. If JS is interpreted then "text/javascript".
+    If JS is compiled then the compile MIME type is required, like "text/babel".
+
+2. What is JavaScript strict mode? How to set strict mode?
+A. Strict mode is a state that you turn ON, so that developers have to write code according to the programming standards.
+     You can turn ON strict mode by using the statement "use strict".
+
+Syntax:
+    <script type="text/javascript">
+
+        "use strict";
+   
+          ... your logic  ...
+
+    </script>
+
+3. How to target JavaScript for legacy browsers?
+A. By enclosing the new code in HTML comments.
+
+Syntax:
+        <script type="text/javascript">
+
+             <!--
+              your code
+
+              -->
+
+        </script>
+
+4. What are the issues with JavaScript as language?
+A.
+    - It is not strongly typed.
+    - It is not implicitly strictly typed.
+    - It is not an OOP language.
+    - Extensibility issues.
+    - Code level security issues.
+
+5. What is the solution?
+A. Typescript is an alternative for JavaScript.
+
+    Developer write in TypeScript => Translated into JavaScript
+
+
+                    JavaScript Reference Techniques
+
+1. JavaScript can refer HTML elements in page by using DOM hierarchy.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function bodyload()
+        {
+            window.document.images[0].src = "../public/images/women-fashion.jpg";
+            window.document.forms[0].elements[1].value  = "Register";
+            window.document.forms[1].elements[2].value = "Login";
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div>
+        <img width="200" height="200">
+    </div>
+    <div>
+       <form>
+        <h3>Register</h3>
+        User Name : <input type="text"> <input type="button">
+       </form>
+    </div>
+    <div>
+        <form>
+            <h3>Login</h3>
+            Email : <input type="email"> OTP : <input type="text" size="4"> <input type="button">
+        </form>
+    </div>
+</body>
+</html>
