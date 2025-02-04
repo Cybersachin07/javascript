@@ -1,0 +1,142 @@
+Tips:
+- You can declare multiple variables using one keyword.
+
+        var x, y, z;
+
+- You can initialize values into variables
+
+        var x=10, y=20, z=30;
+
+        var x, y, z = 10;        x,y => are undefined, z=10
+
+- ES6+ version supports de-structuring declaration.
+
+        var [x, y, z]  = [10, 20, 30];        x=10, y=20, z=30
+        var [x, y, z]  = [10, 20];            x =10, y=20, z=undefined
+       
+        var x=10; y=20                y is not defined.
+
+
+                    JavaScript Data Types
+- Data type defines the complete data structure.
+- It specifies the type of value, range of value and behavior of value.
+- JavaScript is not strongly typed language.
+- It is implicitly typed language. (or) dynamically typed language.
+
+            var x  = 10;        x is number
+            x= "A";            x is string            
+
+- JavaScript data types are classified into 2 categories
+
+        a) Primitive Types
+        b) Non Primitive Types
+
+Primitive Types:
+- They are immutable types.
+- They have fixed structure.
+- They have fixed range for value.
+- Value range can't change.
+- They are stored in memory stack. [LIFO]  Last-in-First-Out
+- JavaScript Primitive types
+
+        1. number
+        2. string
+        3. boolean
+        4. null
+        5. undefined
+        6. symbol
+
+Number Type:
+- Number type refers to a numeric value.
+- JavaScript number can be any one of the following
+
+        Signed Integer        -32
+        Unsigned Integer        32
+        Floating Point            43.34
+        Double                  345.30
+        Decimal                3400.34 [29]
+        Bigint                 842294999n
+        Hexadecimal            0x8823
+        Octa                    0o734
+        Binary                0b1010
+        Exponent             2e3 [2 x 10^3]  = 2000
+
+FAQ's:
+1. How to display number exactly as defined in data source?
+A. You can use various conversion methods that converts a number into readable format.
+
+        toFixed()
+        toLocaleString()
+
+Ex:
+<script>
+    var price = 56000.00;
+    document.write("Price=" + price.toFixed(2));
+</script>
+
+Syntax:
+            price.toLocaleString();
+            price.toLocaleString('en-in');
+            price.toLocaleString('en-in', { style:"currency", currency:"INR"});
+
+2. How to convert a numeric string into number?
+A. By using parsing methods
+        a) parseInt()
+        b) parseFloat()
+
+Ex:
+<script>
+    var rating = parseInt(prompt("Enter Rating"));
+    document.write("Rating=" + (rating+1));
+</script>
+
+Ex:
+<script>
+    var rating = parseFloat(prompt("Enter Rating"));
+    document.write("Rating=" + (rating+1));
+</script>
+
+3. How to check number type?
+A. By using "isNaN()" method. It is a Boolean method that returns true when value is not a number type.
+
+Syntax:
+            var x  = "A";
+            if(isNaN(x))
+            {
+                  // x is not a number;
+            }
+            else {
+                // x is a number;
+            }
+
+Ex:
+<script>
+    var age = prompt("Enter Age");
+    if(isNaN(age)) {
+        alert('Age must be a number');
+    } else {
+        document.write("Age=" + age);
+    }
+</script>
+
+
+4. What are the operators used on numbers?
+A.
+        - Arithematic operators
+        - Comparison operators
+        - Assignment operators
+        - Bitwise operators
+
+5. How JavaScript handles various mathematical and financial operations on numbers?
+A. By using JavaScript Math library.
+
+            Math.PI
+            Math.sqrt()
+            Math.random()
+            Math.floor()
+            Math.round()
+            Math.pow()
+            Math.sin()
+            Math.cos()
+            Math.tan()
+            etc..

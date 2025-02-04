@@ -1,0 +1,417 @@
+1. Refer by using DOM hierarchy
+2. Refer by using name
+- Every element can have a reference name.
+- JavaScript can access using the reference name.
+
+Syntax:
+        <img  name="pic">
+   
+        pic.src="";
+ 
+- You can't access any child element without referring to its generic parent.
+- Name can be common for several elements, which leads to reference conflict.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function bodyload()
+        {
+            poster.src = "../public/images/kids-fashion.jpg";
+            frmLogin.btnLogin.value = "Login";
+            frmRegister.btnRegister.value = "Register";
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div>
+        <img width="200" height="200" name="poster">
+    </div>
+    <div>
+       <form name="frmLogin">
+        <h3>Register</h3>
+        User Name : <input type="text"> <input type="button" name="btnLogin">
+       </form>
+    </div>
+    <div>
+        <form name="frmRegister">
+            <h3>Login</h3>
+            Email : <input type="email"> OTP : <input type="text" size="4"> <input name="btnRegister" type="button">
+        </form>
+    </div>
+</body>
+</html>
+
+3. Refer by using ID
+- HTML Element can have a unique reference ID.
+- JavaScript can access by using ID reference without any hierarchy.
+- JavaScript uses
+      "document.getElementById()"
+
+Syntax:
+        <img  id="pic">
+        <form>
+            <input type="button" id="btn">
+        </form>
+
+        document.getElementById("pic").src=""
+        document.getElementById("btn").value=""
+
+- CSS also uses ID as selector, where ID can be common for multiple elements. This leads to conflict in references.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function bodyload()
+        {
+           document.getElementById("poster").src = "../public/images/men-fashion.jpg";
+           document.getElementById("btnLogin").value = "Login";
+           document.getElementById("btnRegister").value = "Register";
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div>
+        <img width="200" height="200" id="poster">
+    </div>
+    <div>
+       <form name="frmLogin">
+        <h3>Register</h3>
+        User Name : <input type="text"> <input type="button" id="btnLogin">
+       </form>
+    </div>
+    <div>
+        <form name="frmRegister">
+            <h3>Login</h3>
+            Email : <input type="email"> OTP : <input type="text" size="4"> <input id="btnRegister" type="button">
+        </form>
+    </div>
+</body>
+</html>
+
+4. JavaScript can refer elements using CSS selectors
+- CSS have various types of selectors.
+    a) Primary
+    b) Attribute
+    c) Rational
+    d) Dynamic Pseudo classes  etc..
+
+- JavaScript uses the method  "document.querySelector()".
+
+Syntax:
+        <img>
+        <input type="button"  id="btn">
+        <input type="button"  class="btn-primary">
+
+        document.querySelector("img")
+        document.querySelector("#btn")
+        document.querySelector(".btn-primary")
+        document.querySelector("nav+div")
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function bodyload()
+        {
+           document.querySelector("img").src= "../public/images/women-fashion.jpg";
+           document.querySelector("#btnLogin").value = "Login";
+           document.querySelector(".btn-primary").value = "Register";
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div>
+        <img width="200" height="200">
+    </div>
+    <div>
+       <form name="frmLogin">
+        <h3>Register</h3>
+        User Name : <input type="text"> <input type="button" id="btnLogin">
+       </form>
+    </div>
+    <div>
+        <form name="frmRegister">
+            <h3>Login</h3>
+            Email : <input type="email"> OTP : <input type="text" size="4"> <input class="btn-primary" type="button">
+        </form>
+    </div>
+</body>
+</html>
+
+
+5. JavaScript can refer multiple elements by using following methods
+   
+    a) getElementsByClassName()
+    b) getElementsByName()
+    c) getElementsByTagName()
+
+Syntax:
+    document.getElementsByTagName("p");
+        document.getElementsByName("gender");
+    document.getElementsByClassName("btn-danger");
+
+
+                      JavaScript Output Techniques
+- Output is the process of rendering details on to client device.
+- JavaScript have various output techniques
+
+        a) alert()
+        b) confirm()
+        c) document.write()
+        d) innerHTML
+        e) innerText
+        f) outerHTML
+        g) textContent
+        h) console methods
+            log()
+            warn()
+            error()
+            info()
+            debug() etc..
+
+Alert:
+- It is a message box displayed by browser.
+- You can display a value or result of any expression in alert.
+
+Syntax:
+        alert("message");
+        alert(10 + 20);
+
+- It can't be canceled.
+- It is mandatory that you confirm and continue.
+- It RC type. It will not allow complex formats.
+- You can add line break by using "\n" for multiline message.
+
+Syntax:
+        alert("line-1\nline-2")
+
+EX:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+            alert("Are you sure?\nWant to delete user?");
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete User</button>
+</body>
+</html>
+
+Confirm:
+- It is similar to alert but allows to cancel.
+- It is Boolean type. It returns
+
+        true            on OK click
+        false            on Cancel click
+
+Syntax:
+        result  = confirm("message / expression");
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+            result = confirm("Are you sure?\nWant to delete user?");
+            if(result==true){
+                alert("User Deleted successfully..");
+            }
+            else {
+                alert("You canceled..");
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete User</button>
+</body>
+</html>
+
+document.write():
+- It is an output method of JavaScript that can present a message, markup or expression.
+- It presents output on a new screen of same page.
+
+Syntax:
+    document.write("message / expression / markup");
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+            result = confirm("Are you sure?\nWant to delete user?");
+            if(result==true){
+                document.write("<font size='5' color='red' face='Arial'><b>User Deleted successfully..</b></font><br><a href='output.html'>Back</a>");
+            }
+            else {
+                alert("You canceled..");
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete User</button>
+</body>
+</html>
+
+
+innerText:
+- It is used to render output inside existing container element that can present text.
+    <p> <h1> <div> <span> <nav> <dt> <dd> <td> <th> etc..
+- It is RC type.
+- It will not support complex formats.
+
+Syntax:
+        <p id="msg"> </p>
+
+        document.getElementById("msg").innerText = " ";
+
+textContent:
+- It is new in JavaScript as replacement for innerText.
+- It is supported by modern browsers.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+            result = confirm("Are you sure?\nWant to delete user?");
+            if(result==true){
+                document.querySelector("p").textContent  = "Deleted Successfully...";
+            }
+            else {
+                document.querySelector("p").innerText = "Canceled..";
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete User</button>
+    <p></p>
+</body>
+</html>
+
+
+innerHTML:
+- It is similar to innerText or textContent but allows formats.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+            result = confirm("Are you sure?\nWant to delete user?");
+            if(result==true){
+                document.querySelector("p").innerHTML  = "<font color='red' size='6'><b>Deleted Successfully...</b></font>";
+            }
+            else {
+                document.querySelector("p").innerText = "Canceled..";
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete User</button>
+    <p></p>
+</body>
+</html>
+
+outerHTML:
+- It replaces the existing element with the new element.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+            result = confirm("Are you sure?\nWant to delete user?");
+            if(result==true){
+                document.querySelector("p").outerHTML  = "<h1>Deleted Successfully..</h1>";
+            }
+            else {
+                document.querySelector("p").innerText = "Canceled..";
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete User</button>
+    <p></p>
+</body>
+</html>
+
+console methods:
+- Browser debugger have a console.
+- Developers can log errors, warnings, messages into debugger while developing or testing application
+
+        console.log()
+        console.warn()
+        console.error()
+        console.info() etc..
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+            console.warn("Warning : Delete button clicked");
+            result = confirm("Are you sure?\nWant to delete user?");
+            if(result==true){
+                console.error('OK Clicked');
+                document.querySelector("p").outerHTML  = "<h1>Deleted Successfully..</h1>";
+            }
+            else {
+                document.querySelector("p").innerText = "Canceled..";
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete User</button>
+    <p></p>
+</body>
+</html>

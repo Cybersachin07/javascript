@@ -1,0 +1,180 @@
+Ex: Form-Input.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <script type="text/javascript">
+        function SubmitClick()
+        {
+            document.getElementById("lblName").textContent = document.getElementById("txtName").value;
+            document.getElementById("lblPrice").textContent = document.getElementById("txtPrice").value;
+            document.getElementById("lblMfd").textContent = document.getElementById("txtMfd").value;
+            document.getElementById("lblRating").innerHTML = "<span class='badge bg-success text-white rounded'>" + document.getElementById("rangeRating").value + "<span class='ms-3 bi bi-star-fill'></span></span>";
+            document.getElementById("lblCategory").textContent = document.getElementById("lstCategories").value;
+
+            stockCheckbox = document.getElementById("optStock");
+            stockStatus = "";
+            if(stockCheckbox.checked){
+                stockStatus = "Available";
+            } else {
+                stockStatus = "Out of Stock";
+            }
+
+            document.getElementById("lblStock").textContent = stockStatus;
+
+           
+           
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <dl class="border border-1 border-secondary p-3 rounded w-25 mt-4">
+        <h3>Register Product</h3>
+        <dt>Name</dt>
+        <dd><input type="text" id="txtName" class="form-control"></dd>
+        <dt>Price</dt>
+        <dd><input type="number" min="1" max="50000" id="txtPrice" class="form-control"></dd>
+        <dt>Manufactured</dt>
+        <dd><input type="date" id="txtMfd" class="form-control"></dd>
+        <dt>Category</dt>
+        <dd>
+            <select id="lstCategories" class="form-select">
+                <option>Select Category</option>
+                <option>Footwear</option>
+                <option>Fashion</option>
+                <option>Electronics</option>
+            </select>
+        </dd>
+        <dt>Rating</dt>
+        <dd><input type="range" class="form-range" step="0.1" min="1" max="5" value="1" id="rangeRating"></dd>
+        <dt>Stock</dt>
+        <dd class="form-switch"><input type="checkbox" class="form-check-input" id="optStock"> <label> Available </label> </dd>
+        <button class="btn btn-warning w-100 mt-3" data-bs-target="#details" data-bs-toggle="modal" onclick="SubmitClick()">Submit</button>
+    </dl>
+    <div class="modal fade" id="details">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Product Details</h4>
+                </div>
+                <div class="modal-body">
+                    <dl class="row">
+                        <dt class="col-6">Name</dt>
+                        <dd class="col-6" id="lblName"></dd>
+                        <dt class="col-6" >Price</dt>
+                        <dd class="col-6" id="lblPrice"></dd>
+                        <dt class="col-6">Manufactured</dt>
+                        <dd class="col-6" id="lblMfd"></dd>
+                        <dt class="col-6">Rating</dt>
+                        <dd class="col-6" id="lblRating"></dd>
+                        <dt class="col-6">Category</dt>
+                        <dd class="col-6" id="lblCategory"></dd>
+                        <dt class="col-6">Stock</dt>
+                        <dd class="col-6" id="lblStock"></dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning w-100" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+Summary
+- How JavaScript functions are accessing in HTML page?
+- How JavaScript refers HTML elements?
+- How JavaScript handle input & output?
+
+                        JavaScript Language
+1. Variables
+2. Data Types
+3. Operators
+4. Statements
+5. Functions
+6. OOP
+7. Modules
+8. DOM & BOM Interactions
+9. State Management
+
+
+JavaScript Variables:
+- Variables are storage locations in memory, where you can store a value and use it as a part of any expression.
+- JavaScript variables are not strongly type.
+- Variable can handle any type of data.
+- The data type can change dynamically according to the value assigned.
+
+            age = 15;         age is number type variable
+            age = "A";     age changes to string type
+            age = true;     age changes to Boolean type
+
+- Every variable configuration comprises of 3 phases
+   
+        a) Declaration
+        b) Initialization
+        c) Assignment
+
+- Declaration comprises of behavior and variable name. Variable declaration is not mandatory in JavaScript if it is not in strict mode.
+- If JavaScript is in strict mode then you must declare a variable.
+- Variable can be declared by using following keywords:
+        a) var
+        b) let
+        c) const
+
+Syntax:
+        var x;        // declaring
+        x = 10;        // assignment
+   
+        var y = 20;    // initialization
+
+var:
+- It configures a function scope for variable.
+- You can declare in any block of a  function and access from any another block inside the function.
+- It supports declaring, assignment and initialization.
+
+Ex:
+<script>
+    "use strict";
+     function f1()
+     {
+        var x;          // declaring
+        x = 10;         // assignment
+        if(x==10)
+        {
+           var y = 20;  // initialization      
+        }
+        document.write("x=" + x + "<br>y=" + y);
+     }
+     f1();
+</script>
+
+- It allows shadowing.
+- Shadowing is the process re-declaring or re-initializing same name identifier within the scope.
+
+Syntax:
+        var x = 10;        // initialization
+        x = 20;            // assignment
+        var x= 30;        // shadowing
+
+- It allows hoisting.
+- Hosting allows to use and later declare. There is no order dependency of declaring and using.
+
+Ex:
+<script>
+    "use strict";
+     function f1()
+     {
+        x = 10;
+        document.write("x=" + x);
+        var x;      // hoisting
+     }
+     f1();
+</script>

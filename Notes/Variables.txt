@@ -1,0 +1,112 @@
+Variables
+- Declaration
+- Assignment
+- Initialization
+- Keywords
+    a) var
+    b) let
+    c) const
+-var
+-Shadowing
+-Hoisting
+
+let:
+- It configures a block scope for variable.
+- Block scope allows to access in the same block or its inner blocks.
+- It supports declaring, assignment & initialization.
+- It will not support shadowing & hoisting.
+
+
+const:
+- It configures a block scope for variable.
+- It supports only initialization.
+- It will not allow declaring and assignment.
+- It will not allow shadowing & hoisting.
+
+Syntax:
+    const x;            // invalid   - missing initialization
+
+    const x = 10;        // valid
+    x = 20;            // invalid   - can't assign to constant
+
+Global Scope for Variable:
+- A global scope is defined outside functions or at module level.
+- You can define using var, let or const.
+
+Syntax:
+    <script>
+        // module level
+        var x  = 10;
+        function f1(){
+            // x is accessible;
+        }
+        function f2(){
+            // x is accessible;
+        }
+    </script>
+
+Ex:
+<script>
+    "use strict";
+    var x = 10;
+    const y = 20;
+    let z = 30;
+     function f1()
+     {
+      document.write("F1 x=" + x + "<br>");
+      document.write("F1 y=" + y + "<br>");
+      document.write("F1 z=" + z + "<br>");
+     }
+     function f2()
+     {
+      document.write("F2 x=" + x  + "<br>");
+      document.write("F2 y=" + y + "<br>");
+      document.write("F2 z=" + z + "<br>");
+     }
+     f1();
+     f2();
+</script>
+
+
+FAQ: How to configure a variable in function and make it global in access?
+Ans:  It is possible using browser "window" object, only when JavaScript is running in browser.
+
+Syntax:
+        window.variableName = value;
+Ex:
+<script>
+    "use strict";
+    var x = 10;
+    const y = 20;
+    let z = 30;
+     function f1()
+     {
+       window.a = 40;
+      document.write("F1 x=" + x + "<br>");
+      document.write("F1 y=" + y + "<br>");
+      document.write("F1 z=" + z + "<br>");
+      document.write("F1 a=" + a + "<br>");
+     }
+     function f2()
+     {
+      document.write("F2 x=" + x  + "<br>");
+      document.write("F2 y=" + y + "<br>");
+      document.write("F2 z=" + z + "<br>");
+      document.write("F2 a=" + a + "<br>");
+     }
+     f1();
+     f2();
+</script>
+
+Variable Naming:
+- Name must start with an alphabet or under score "_".
+- It can be alpha numeric.
+- Special chars are not recommended.
+- ECMA recommends max 255 chars for name.
+- It can't be a keyword.
+
+        var class;
+        var while;
+        var for;
+        var switch;
+- Name must speak what it is.
