@@ -1,0 +1,188 @@
+Number Type
+Formatting Number
+Parsing Number
+Math
+Operators
+
+Arithematic Operators:
+
+    +            Addition
+    -             Subtraction
+    *            Multiplication
+    /            Division
+    %            Modulus
+    **            Power   [ Math.pow() ]   2**3   = 8
+    ++            Increment
+    --            Decrement
+
+Ex: EMI Calculator
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript">
+        function AmountChange(){
+            document.getElementById("txtAmount").value = document.getElementById("rangeAmount").value;
+        }
+        function YearChange(){
+            document.getElementById("txtYears").value = document.getElementById("rangeYears").value;
+        }
+        function RateChange(){
+            document.getElementById("txtRate").value = document.getElementById("rangeRate").value;
+        }
+        function CalculateClick(){
+            var P = parseInt(document.getElementById("txtAmount").value);
+            var R = parseFloat(document.getElementById("txtRate").value)/12/100;
+            var N = parseInt(document.getElementById("txtYears").value) * 12;
+            var EMI = P * R * (Math.pow(1+R,N))/(Math.pow(1+R,N)-1);
+
+            document.getElementById("lblResult").innerHTML = "Your Installment amount is <b>" + EMI.toLocaleString('en-in',{style:"currency", currency:"INR"}) + " </b>for next " + N + " months.";
+        }
+    </script>
+</head>
+<body class="container-fluid bg-secondary">
+    <div class="bg-white p-4 m-4">
+        <div class="my-3 h3 text-center">Personal Loan EMI Calculator</div>
+        <div class="my-4 row">
+            <div class="col">
+                Amount you need &#8377; <input type="text" size="14" id="txtAmount">
+            </div>
+            <div class="col">
+                for <input type="text" size="2" id="txtYears"> years
+            </div>
+            <div class="col">
+                interset rate <input type="text" size="4" id="txtRate"> %
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col">
+                <input type="range" onchange="AmountChange()" class="form-range" min="100000" max="1000000" value="100000" id="rangeAmount">
+                <div>
+                    <span>&#8377; 1,00,000</span>
+                    <span class="float-end">&#8377; 10,00,000</span>
+                </div>
+            </div>
+            <div class="col">
+                <input type="range" onchange="YearChange()" class="form-range" min="1" max="5" value="1" id="rangeYears">
+                <div>
+                    <span>1</span>
+                    <span class="float-end">5</span>
+                </div>
+            </div>
+            <div class="col">
+                <input type="range" onchange="RateChange()" class="form-range"  min="10.45" max="18.45" step="0.01" value="10.45" id="rangeRate">
+                <div>
+                    <span>10.45%</span>
+                    <span class="float-end">18.45%</span>
+                </div>
+            </div>
+        </div>
+        <div class="row my-4">  
+            <div class="col text-end">
+                <button onclick="CalculateClick()" class="btn btn-primary">Calculate</button>
+            </div>
+        </div>
+        <div class="my-4 text-center">
+            <div id="lblResult" class="fs-3"></div>
+        </div>
+    </div>
+</body>
+</html>
+
+Task : BMI Calculator
+        - Age    
+        - Height
+        - Weight    
+        - Calculate BMI     24.43
+
+
+                             String Type
+- String is a literal with group of characters enclosed in
+    a) Double Quote     " "
+    b) Single Quote    '  '
+    c) Back Tick         ` `
+
+- You can use single & double quote for outer and inner strings.
+- You can swap the quotes for outer & inner.
+
+Syntax:
+      var  link  =  "<a href='home.html'> Home </a>";
+   
+      var link =  '<a href="home.html"> Home </a>';
+
+- Single & double quote require "+" operator to concat dynamic values.
+
+Syntax:
+        "string" + dynamicValue + "string"
+
+- Backtick uses a string representation with embedded expression.
+- You can bind the dynamic value by using binding expression "${  }".
+
+Syntax:
+        `string ${dyamicValue} string`;
+
+Ex:
+<script>
+    var uname = "John";
+    var age = 22;
+    var msg1 = "Hello !" + "&nbsp;" + uname + "&nbsp;" + "you will be" + "&nbsp;" + (age+1) + "&nbsp;" + "next year.<br>";
+    var msg2 = `Hello ! ${uname} you will be ${age+1} next year.`;
+    document.write(msg1);
+    document.write(msg2);
+
+</script>
+
+- String can have various literals, few chars in a string can escape printing.
+- To print the non-printable characters you have to use the escape sequence character "\".
+
+Ex:
+<script>
+    var path = "\"D:\\project\\images\\logo.jpg\"";
+    document.write(path);
+</script>
+
+- JavaScript provides various methods to format and manipulate string dynamically.
+
+String Formatting Methods:
+    big()
+    small()
+    fontsize()
+    fontcolor()
+    bold()
+    italics()
+    sup()
+    sub()
+    toUpperCase()
+    toLowerCase() etc..
+
+Ex:
+<script>
+    var msg = "Welcome to JavaScript";
+    document.write(msg.fontcolor('green').fontsize(4).toUpperCase());
+</script>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+      function ChangeCase(){
+          var code = document.getElementById("txtCode").value;
+          document.getElementById("txtCode").value = code.toUpperCase();
+      }
+  </script>
+</head>
+<body>
+   <dl>
+     <dt>Bank IFSC Code</dt>
+     <dd><input type="text" id="txtCode" onkeyup="ChangeCase()"></dd>
+   </dl>
+</body>
+</html>
