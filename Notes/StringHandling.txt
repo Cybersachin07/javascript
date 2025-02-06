@@ -1,0 +1,283 @@
+Number
+String
+    - Single
+    - Double
+    - Backtick
+Data Binding Expression ${ }
+String Formatting methods
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function ApplyClick(){
+            var lblMsg = document.getElementById("lblMsg");
+            var size = document.getElementById("txtSize").value;
+            var color = document.getElementById("txtColor").value;
+            var style = document.getElementById("lstStyles").value;
+
+            lblMsg.innerHTML = "Sample Text".fontsize(size).fontcolor(color);
+
+            if(style=="Bold") {
+                lblMsg.innerHTML = "Sample Text".fontsize(size).fontcolor(color).bold();
+            } else {
+                lblMsg.innerHTML = "Sample Text".fontsize(size).fontcolor(color).italics();
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>Font Size</dt>
+        <dd><input type="range" id="txtSize" min="1" max="7" value="3" /></dd>
+        <dt>Font Color</dt>
+        <dd><input type="color" id="txtColor" value="#000000"></dd>
+        <dt>Font Style</dt>
+        <dd>
+            <select id="lstStyles">
+                <option>Select Style</option>
+                <option>Bold</option>
+                <option>Italics</option>
+            </select>
+        </dd>
+    </dl>
+    <button onclick="ApplyClick()">Apply</button>
+    <p id="lblMsg">Sample Text</p>
+</body>
+</html>
+
+String Manipulation:
+
+1. length        : It returns the total count of characters in a string.
+
+Syntax:
+    var msg = "Welcome";
+    msg.length            // 7
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function VerifyRequired(){
+            var username = document.getElementById("txtName").value;
+            var lblName = document.getElementById("lblName");
+            if(username.length==0){
+                lblName.innerHTML = "User Name Required".fontcolor('red');
+            } else {
+                if(username.length<4) {
+                    lblName.innerHTML = "Name too short..".fontcolor('red');
+                } else {
+                    lblName.innerHTML = "";
+                }
+            }
+        }
+        function VerifyComments(){
+            var comments = document.getElementById("txtComments").value;
+            var lblComments = document.getElementById("lblComments");
+            lblComments.innerHTML = `${(100 - comments.length)} chars left.`.fontcolor('#aaaa00');
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" onblur="VerifyRequired()" onkeyup="VerifyRequired()" id="txtName"></dd>
+        <dd id="lblName"></dd>
+        <dt>Your Comments</dt>
+        <dd>
+            <textarea onkeyup="VerifyComments()" maxlength="100" rows="4" cols="40" id="txtComments"></textarea>
+        </dd>
+        <dd id="lblComments"></dd>
+    </dl>
+</body>
+</html>
+
+2. charAt()        : It returns the character at specified index.
+
+3. charCodeAt()    : It returns the ASCII code of character at specified index.
+
+Syntax:
+        var title = "Amazon";
+        title.charAt(0);            // A
+        title.charCodeAt(0);        // 65     A=65, Z=90, a=97, z=122
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function VerifyRequired(){
+            var username = document.getElementById("txtName").value;
+            var lblName = document.getElementById("lblName");
+            if(username.length==0){
+                lblName.innerHTML = "User Name Required".fontcolor('red');
+            } else {
+                if(username.length<4) {
+                    lblName.innerHTML = "Name too short..".fontcolor('red');
+                } else {
+                    lblName.innerHTML = "";
+                }
+            }
+        }
+        function VerifyComments(){
+            var comments = document.getElementById("txtComments").value;
+            var lblComments = document.getElementById("lblComments");
+            lblComments.innerHTML = `${(100 - comments.length)} chars left.`.fontcolor('#aaaa00');
+        }
+        function VerifyFirstName(){
+            var firstname = document.getElementById("txtFirstName").value;
+            var lblFirstName = document.getElementById("lblFirstName");
+
+            if((firstname.charCodeAt(0)>=65) && (firstname.charCodeAt(0)<=90)){
+                lblFirstName.innerHTML = "";
+            } else {
+                lblFirstName.innerHTML = "Name must start with uppercase letter".fontcolor('red');
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" onblur="VerifyRequired()" onkeyup="VerifyRequired()" id="txtName"></dd>
+        <dd id="lblName"></dd>
+        <dt>First Name</dt>
+        <dd><input type="text" id="txtFirstName" onblur="VerifyFirstName()"></dd>
+        <dd id="lblFirstName"></dd>
+        <dt>Your Comments</dt>
+        <dd>
+            <textarea onkeyup="VerifyComments()" maxlength="100" rows="4" cols="40" id="txtComments"></textarea>
+        </dd>
+        <dd id="lblComments"></dd>
+    </dl>
+</body>
+</html>
+
+4. startsWith()        : It returns true if string starts with specified char(s).
+
+5. endsWith()        : It returns true if string ends with specified char(s).
+
+Syntax:
+    var  msg = "Hello World";
+    msg.startsWith("World");    // false
+    msg.startsWith("Hello");        // true
+    msg.endsWith("Hello");        // false
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+        function VerifyCard(){
+            var card = document.getElementById("txtCard").value;
+            var imgCard =document.getElementById("imgCard");
+            if(card.startsWith("4455")) {
+                imgCard.src = "../public/images/visa.jpg";
+            } else {
+                imgCard.src = "../public/images/master-card.jpg";
+            }
+        }
+        function VerifySkype(){
+            var skype = document.getElementById("txtSkype").value;
+            var lblSkype = document.getElementById("lblSkype");
+            if(skype.endsWith("outlook.com")) {
+                lblSkype.innerHTML = "Your skype verified".fontcolor('green');
+            } else {
+                lblSkype.innerHTML = "Invalid Skype Account".fontcolor('red');
+            }
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <h4>Payment Details</h4>
+    <dl class="w-25">
+        <dt>Your Card </dt>
+        <dd class="input-group">
+            <input type="text" onblur="VerifyCard()" id="txtCard" maxlength="16" class="form-control">
+            <img class="input-group-text" id="imgCard" width="70">
+        </dd>
+        <dt>Your <span class="bi bi-skype"></span> Account </dt>
+        <dd>
+            <input type="text" onblur="VerifySkype()" id="txtSkype" class="form-control">
+        </dd>
+        <dd id="lblSkype"></dd>
+    </dl>
+</body>
+</html>
+
+6. trimStart()        : It removes the leading spaces at the start of string.
+
+7. trimEnd()        : It removes the leading spaces at the end of string.
+
+8. trim()            : It removes all leading spaces.
+
+Syntax:
+<script>
+    var pin = prompt("Enter your PIN");
+
+    if(pin.trim()=="8844") {
+        document.write("PIN verified successfully");
+    } else {
+        document.write("Invalid PIN");
+    }
+</script>
+
+9. slice()            : It can read and returns the chars between specified index.
+                 
+                Syntax:   str.slice(startIndex, endIndex);
+                   
+                 The end index must be a value greater than start index.
+
+                Syntax:  str.slice(7,15);
+                          str.slice(7);        // reads up to end
+
+10. substr()        : It specifies the number of characters to read from given index.
+
+                Syntax:   str.substr(startIndex, count_of_chars);
+                           str.substr(7,8);        // 8 chars from 7 index.
+                           str.substr(7);        // from 7 up to end
+
+Note: slice() & substr() are unidirectional in reading elements.
+
+11. substring()        : It specifies the chars between index in bidirectional.
+
+                  Syntax:  str.substring(startIndex, endIndex)
+                        str.substring(7,15);        from 7 up to 15
+                        str.substring(7,0);        from 7 to 0 index.
+                        str.substring(7);        from 7 to end
+
+
+12. indexOf()        : It returns the first occurrence index number of a character in string.
+
+Syntax:
+    var msg = "Welcome";
+    msg.indexOf("e");        // 1
+
+13. lastIndexOf()    : It returns the last occurrence index number of a character in string.
+
+Syntax:
+    var msg = "Welcome";
+    msg.lastIndexOf("e");    // 6
+
+Ex:
+<script>
+     var videoUrl = "https://www.youtube.com/watch?v=yHSDcUnUD5Q&quot;;
+     var videoCode = videoUrl.substring(videoUrl.indexOf("=")+1);
+     document.write(`<iframe width="700" height="400" src='https://www.youtube.com/embed/${videoCode}'></iframe>`);
+</script>
