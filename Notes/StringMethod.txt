@@ -1,0 +1,300 @@
+String Formatting Methods & Properties
+- length
+- charAt()
+- charCodeAt()
+- indexOf()
+- lastIndexOf()
+- startsWith()
+- endsWith()
+- trimStart()
+- trimEnd()
+- trim()
+- slice()
+- substr()
+- substring()
+
+14. replace()            : It finds and replaces a char(s) in string. [only first occurrence]
+
+15. replaceAll()        : It finds and replaces all occurrences.
+
+Syntax:
+       str.replace(old, new);
+       str.replaceAll(old, new);
+
+Ex:
+<script>
+   var str = "JS is used for DOM. JS can manipulate DOM";
+   document.write(str.replaceAll("JS", "JavaScript"));
+</script>
+
+16. split()        : It splits a string at specified delimiter and returns an array of strings.
+
+Syntax:
+       var str = "4000, 5000, 6000";
+       var [tv, watch, mobile] = str.split(',');
+
+       tv = 4000,
+       watch = 5000,
+       mobile = 6000
+
+Ex:
+<script>
+   var data = "John-22-HTML,David-24-CSS";
+    var [john, david] = data.split(',');
+    var [name, age, course] = john.split('-');
+    document.write(`John Age is ${age} and his course is ${course}`);
+</script>
+
+Ex:
+<script>
+    var email = prompt("Enter Your Email Address");
+    var email_id = email.substring(0, email.indexOf("@"));
+    var domain = email.substring(email.indexOf("@")+1);
+
+    document.write(`Your Id : ${email_id}<br>Domain : ${domain}`);
+</script>
+
+Ex:
+<script>
+    var email = prompt("Enter Your Email Address");
+    var [email_id, domain] = email.split('@');
+    document.write(`Your Id : ${email_id}<br>Domain : ${domain}`);
+</script>
+
+17. match()        : It is a Boolean method used to compare a value with regular
+                  expression.
+                  It verifies the pattern of value using meta characters & quantifiers.
+
+
+Note: Regular expression in JavaScript is enclosed within "/  /".
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function VerifyPassword(){
+            var password = document.getElementById("txtPwd").value;
+            var regExp = /(?=.*[A-Z])\w{4,15}/;
+            var lblPwd = document.getElementById("lblPwd");
+            var pwdMeter = document.getElementById("pwdMeter");
+
+            if(password.length==0){
+                 lblPwd.innerHTML = "Password Required".fontcolor('red');
+            } else {
+                if(password.match(regExp)){
+                lblPwd.innerHTML = "Strong Password".fontcolor('green');
+                pwdMeter.value = 100;
+                } else {
+                    if(password.length<4){
+                        lblPwd.innerHTML = "Poor Password".fontcolor('red');
+                        pwdMeter.value = "30";
+                    } else {
+                        lblPwd.innerHTML = "Weak Password".fontcolor('gold');
+                        pwdMeter.value = "70";
+                    }
+                }
+            }
+           
+
+        }
+    </script>
+    <style>
+        meter {
+            width: 170px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <dl>
+        <dt>Password</dt>
+        <dd><input type="password" onkeyup="VerifyPassword()" id="txtPwd"></dd>
+        <dd><meter id="pwdMeter" min="1" max="100" value="1"></meter></dd>
+        <dd id="lblPwd"></dd>
+    </dl>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function VerifyPassword(){
+            var password = document.getElementById("txtPwd").value;
+            var regExp = /(?=.*[A-Z])\w{4,15}/;
+            var lblPwd = document.getElementById("lblPwd");
+            var pwdBar = document.getElementById("pwdBar");
+
+            if(password.length==0){
+                 lblPwd.innerHTML = "Password Required".fontcolor('red');
+            } else {
+                if(password.match(regExp)){
+                lblPwd.innerHTML = "Strong Password";
+                pwdBar.style.width = "100%";
+                pwdBar.className = "progress-bar progress-bar-animated progress-bar-striped bg-success";
+                } else {
+                    if(password.length<4){
+                        lblPwd.innerHTML = "Poor Password";
+                        pwdBar.style.width = "20%";
+                        pwdBar.className = "progress-bar progress-bar-animated progress-bar-striped bg-danger";
+                    } else {
+                        lblPwd.innerHTML = "Weak Password";
+                        pwdBar.style.width = "70%";
+                        pwdBar.className = "progress-bar progress-bar-animated progress-bar-striped bg-warning";
+                    }
+                }
+            }
+
+        }
+    </script>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body class="container-fluid">
+    <dl class="mt-4 w-50">
+        <dt>Password</dt>
+        <dd><input type="password" class="form-control" onkeyup="VerifyPassword()" id="txtPwd"></dd>
+        <dd>
+            <div class="progress">
+                <div  id="pwdBar">
+                    <span id="lblPwd"></span>
+                </div>
+            </div>
+        </dd>
+    </dl>
+</body>
+</html>
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function VerifyPassword(){
+            var password = document.getElementById("txtPwd").value;
+            var regExp = /(?=.*[A-Z])\w{4,15}/;
+            var lblPwd = document.getElementById("lblPwd");
+            var pwdBar = document.getElementById("pwdBar");
+
+            if(password.length==0){
+                 lblPwd.innerHTML = "Password Required".fontcolor('red');
+            } else {
+                if(password.match(regExp)){
+                lblPwd.innerHTML = "Strong Password";
+                pwdBar.style.width = "100%";
+                pwdBar.className = "progress-bar progress-bar-animated progress-bar-striped bg-success";
+                } else {
+                    if(password.length<4){
+                        lblPwd.innerHTML = "Min 4 chars";
+                        pwdBar.style.width = "20%";
+                        pwdBar.className = "progress-bar progress-bar-animated progress-bar-striped bg-danger";
+                    } else {
+                        lblPwd.innerHTML = "Atleast 1 uppercase letter required";
+                        pwdBar.style.width = "70%";
+                        pwdBar.className = "progress-bar progress-bar-animated progress-bar-striped bg-warning";
+                    }
+                }
+            }
+
+        }
+    </script>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body class="container-fluid">
+    <dl class="mt-4 w-50">
+        <dt>Password</dt>
+        <dd><input type="password" class="form-control" onkeyup="VerifyPassword()" id="txtPwd"></dd>
+        <dd>
+            <div class="progress">
+                <div  id="pwdBar">
+                    <span id="lblPwd"></span>
+                </div>
+            </div>
+        </dd>
+    </dl>
+</body>
+</html>
+
+Ex: Verify Mobile
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+         var tip = "";
+         var regExp = / /;
+
+        function CountryChange(){
+            var country = document.getElementById("lstCountries").value;
+            var mobileTexBox = document.getElementById("txtMobile");
+            var imgFlag = document.getElementById("imgFlag");
+
+            if(country=="India"){
+                tip = "eg: +91 and 10 digits";
+                mobileTexBox.placeholder = tip;
+                regExp = /\+91\d{10}/;
+                imgFlag.src = "../public/images/india.png";
+
+            } else if(country=="US") {
+                tip = "eg: +(1)(425) 555-0100";
+                mobileTexBox.placeholder = tip;
+                regExp = /\+\(1\)\(\d{3}\)\s\d{3}-\d{4}/;
+                imgFlag.src = "../public/images/us.png";
+
+            } else if(country=="UK") {
+                tip = "eg: +(44)(20) 1234 5678";
+                mobileTexBox.placeholder = tip;
+                regExp = /\+\(44\)\(\d{2}\)\s\d{4}\s\d{4}/;
+                imgFlag.src = "../public/images/uk.png";
+            }
+
+        }
+        function VerifyMobileClick(){
+            var mobile = document.getElementById("txtMobile").value;
+            var lblMobile = document.getElementById("lblMobile");
+
+            if(mobile.match(regExp)){
+                lblMobile.innerHTML = "Mobile Verified".fontcolor('green');  
+            } else {
+                lblMobile.innerHTML = `Invalid Mobile : ${tip}`.fontcolor('red');
+            }
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <h3>Your Mobile Verification</h3>
+    <dl class="w-25">
+        <dt>Select Your Country</dt>
+        <dd class="input-group">
+            <select id="lstCountries" onchange="CountryChange()" class="form-select">
+                <option>Select Country</option>
+                <option>India</option>
+                <option>US</option>
+                <option>UK</option>
+            </select>
+            <img id="imgFlag" class="input-group-text" width="50">
+        </dd>
+        <dt>Mobile Number</dt>
+        <dd><input type="text" id="txtMobile" class="form-control"></dd>
+        <dd id="lblMobile"></dd>
+        <dd>
+            <button onclick="VerifyMobileClick()" class="btn btn-warning w-100">Verify Mobile</button>
+        </dd>
+    </dl>
+</body>
+</html>
