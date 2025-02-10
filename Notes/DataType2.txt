@@ -1,0 +1,224 @@
+JavaScript Primitive Types
+1. Number
+2. String
+
+3. Boolean Type
+- Boolean is used in decision making.
+- Boolean uses "true or false" as value.
+
+Syntax:
+        var stock = true;
+        var stock = "true";        // is string type not Boolean
+
+- JavaScript Boolean can use 0 for false and 1 for true.
+- It is always recommended to use the keywords true or false.
+
+Syntax:
+        var stock = true;
+         
+        if(stock==1)        // not good
+        {
+        }
+
+        if(stock==true)        // good
+        {
+        }
+
+- You can control HTML Boolean attributes by using the Boolean type.
+
+        open
+        readonly
+        required
+        disabled
+        checked
+        selected etc.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function TermsChange(){
+            var termsCheckbox = document.getElementById("chkTerms");
+            var btnSubmit = document.getElementById("btnSubmit");
+            if(termsCheckbox.checked) {
+                btnSubmit.disabled = false;
+            } else {
+                btnSubmit.disabled  = true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="checkbox" onchange="TermsChange()" id="chkTerms"> <label> I Accept</label>
+    <br>
+    <button id="btnSubmit" disabled>Submit</button>
+</body>
+</html>
+   
+- Boolean type requires various decision making statements.
+    [if, else, switch, case, default ]
+- Boolean type requires various operators
+    a) Comparison operators
+            >            greater than
+            > =             greater than or equal
+            <            less than
+            < =            less than or equal
+            !=            not equal
+            ==            equal
+            ===            identical equal
+    b) Logical operators
+            &&            AND
+            ||            OR
+            !            NOT
+    c) Ternary Operator
+            ?:
+
+FAQ: What is difference between  "==" and "===" ?
+Ans:  "==" can compare values of different data types.
+     "===" can compare only values of same data type.
+
+Syntax:
+        "10" == 10        true
+        "10" === 10        false
+        10  === 10        true
+        "10" === "10"        true
+
+FAQ: What are logical operators?
+Ans : A logical operator can handle multiple expressions or can make the expression
+     as negation.
+
+Syntax:
+        expression1  &&  expression2    => true if both expressions are true.
+        expression1 || expression2        => true if any one expression is true.
+        !true                            => false
+
+Ex:
+        password  or  OTP            =>    ||
+        username and password    =>   &&
+
+FAQ: What is ternary operator?
+Ans:  It is a JavaScript special operator to handle Boolean expression and perform actions relative to the expression result. [true or false].
+
+Syntax:
+        (condition) ? true_statements : false_statements
+
+        if(condition)
+        {
+          true;
+        }
+        else
+        {
+         false;
+        }
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <title>Document</title>
+    <script>
+        function Toggle(){
+            document.getElementById("btnToggle").innerHTML = (document.getElementById("btnToggle").innerHTML==="Show")?"Hide":"Show";
+            document.getElementById("imgContainer").style.display = (document.getElementById("imgContainer").style.display==="none")?"block":"none";
+        }
+        function SortClick(){
+            document.getElementById("btnSort").className = (document.getElementById("btnSort").className==="bi bi-sort-alpha-down btn btn-warning")?"bi bi-sort-alpha-up btn btn-danger":"bi bi-sort-alpha-down btn btn-warning";
+        }
+        function StockChange(){
+            var stockCheckbox = document.getElementById("chkStock");
+            var lblStock = document.getElementById("lblStock");
+
+            lblStock.innerHTML = (stockCheckbox.checked)?"Available":"Out of Stock";
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <button id="btnToggle" onclick="Toggle()">Show</button>
+    <br><br>
+    <div id="imgContainer" style="display: none;">
+        <img src="../public/images/women-fashion.jpg" width="100" height="100">
+    </div>
+    <br><br>
+    <button id="btnSort" onclick="SortClick()" class="bi bi-sort-alpha-down btn btn-warning"></button>
+    <br><br>
+    <input type="checkbox" onchange="StockChange()" id="chkStock"> <label id="lblStock">Out of Stock</label>
+</body>
+</html>
+
+4. Undefined Type
+- JavaScript is not a strongly typed language.
+- The data type is determined according to the value assigned.
+- If value is not defined into any reference variable at compile time then JavaScript sets as "undefined".
+
+Syntax:
+        var price;
+        document.write("price="  + price);        price=undefined
+
+- You can use a simple "if" statement to check value defined or not.
+
+Syntax:
+        if(price===undefined) { }            // not good
+        if(price!==undefined)  { }            // not good
+        if(price) { }                    // good verifies defined
+Ex:
+<script>
+    var price;
+    price = 40000;
+    if(price) {
+        document.write(`Price=${price}`);
+    } else {
+        document.write("Please enter value for price");
+    }
+</script>
+
+FAQ: What is difference between undefined & not-defined?
+Ans:  Undefined is returned when value is defined into reference.
+     Not Defined is an reference error specifies that the reference memory is not     available.
+
+Syntax:
+<script>
+    var x;
+    document.write(`x=${x} <br> y=${y}`);        y not defined, x = undefined
+</script>        
+
+Null
+- It specifies that value is not defined into a reference at runtime of application.
+- It is verified by using "null" keyword.
+
+Syntax:
+        var x = prompt("Enter Number");    // x === null when canceled.
+
+        if(x===null)
+        {
+        }
+
+       
+Symbol:
+- It is used to configure a hidden property in object.
+- So that property is used in internal process but not shown over iterations.
+
+Syntax:
+    var   id  = Symbol();
+
+    var obj = {
+        [id] : 101,            // symbol type
+        Name : "TV"
+    }
+
+
+Summary:
+- number
+- string
+- Boolean
+- null
+- undefined
+- symbol
