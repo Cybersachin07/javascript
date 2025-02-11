@@ -1,0 +1,90 @@
+JavaScript Non-Primitive Types
+- They are mutable types.
+- They don't have any fixed range for values.
+- Value range varies according to the memory available.
+- They are stored in memory heap.
+- Heap memory allows to access in any order.
+- JavaScript Non-Primitive types are
+    a) Array
+    b) Object
+    c) Map etc.
+
+                              Array
+- Arrays are used in computer programming to reduce overhead and complexity.
+- Arrays reduce overhead by storing values in sequential order.
+- Arrays reduce complexity by storing multiple values under reference of one name.
+- Array can store different types of elements in sequential order.
+- Array size can be changed dynamically.
+- However several programming technologies restrict array to similar data type and will not allow to change the memory dynamically.
+- Array refers to a type of arrangement, which have a sequential order but allows to access in random.
+
+Array Configuration:
+1. Array is declared by using var & let.
+2. Array can be initialized by using const.
+3. After declaration assignment or initialization of memory is mandatory.
+
+Syntax:
+        var values;        // not ready to handle array
+        let values;
+
+4. Memory can be assigned or initialized by using 2 techniques
+        a) Array meta character  "[  ]"
+        b) Array constructor  "Array()"
+
+Syntax: Assignment
+        var values;
+        values = [ ];                // now ready to handle multiple values
+           (or)
+        values = new Array();        // ready for values
+
+Syntax: Initialization
+
+        var values = [ ];
+        var values = new Array();
+
+FAQ: What is difference between meta character & array constructor?
+Ans:  Array() constructor configures dynamic memory.
+     It allocates new memory for every request.
+     Dynamic is discreet memory.  [disconnected]
+
+    Array meta character [ ] uses static memory.
+    It is continuous memory.
+    Memory allocated for first request will continue across multiple requests.
+
+Handling Array Elements:
+- Array elements are stored and accessed with reference of "Property".
+- "Property" map to index number in memory.
+- Property is string type, where index is number type.
+
+Syntax:
+        var  values = [ ];
+        values["0"] = 10;        // valid
+        values[1] = 20;        // valid
+
+- Array element can be any type
+        a) Primitive
+        b) Non Primitive
+        c) Function
+
+Ex:
+<script>
+     var values = [10, "A", true, function(){document.write("Hello ! Array")}];
+     values[3]();
+     document.write(`<br>${values[1]}`);
+</script>
+
+Ex:
+<script>
+     var values = [[10, 20, 30], ["Delhi","Hyd", "Chennai"]];
+     document.write(values[1][1])
+</script>
+
+Ex:
+<script>
+     var values = [[10, 20, 30], [["Delhi","Hyd", "Chennai"],[40, 50, 60]]];
+     document.write(values[1][0][1])
+</script>
+
+Note: Functions in array memory are configured as "Anonymous".
+      Anonymous function is accessed by using "IIFE" pattern.
+      [Immediately Invoking Function Expression].
