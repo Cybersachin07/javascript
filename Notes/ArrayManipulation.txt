@@ -1,0 +1,293 @@
+Array Manipulation
+- JavaScript array provides various properties and methods that are used to manipulate and handle array.
+
+1. length            : It returns total count of elements in array.
+
+Syntax:
+     var values = [10, 20, 30];
+     values.length;            // 3
+
+2. Array De-structure : It is possible by using the "spread" operator "..."
+
+Syntax:
+        var  a = [10, 20, 30];
+        var  b = [40, 50];
+        var  c  = [a, b];            // 2 elements
+        var  c  = [...a, b];        // 4 elements
+        var  c  = [...a, ...b];        // 5 elements
+        var  c  = [...b];            // 2 elements
+   
+        var [a,b,c] = [10, 20, 30];        a=10, b=20, c=10
+
+3. Reading Array elements
+
+ toString()            : It reads and returns all elements separated with "," delimiter.
+ join()                : It reads and returns all elements with custom delimiter.
+ forEach()            : It uses an callback that reads every element and its index.
+                      It uses "sync" technique.
+ map()                : It uses a callback that reads every element and its index
+                      using async technique.
+
+Syntax:
+    values.toString()
+    values.join(" > ");
+   
+    values.forEach(function(value, index){
+
+    })
+
+    values.map(function(value, index){
+
+    })
+
+
+Ex:
+<script>
+     var categories = ["Home", "Electronics", "Mobiles", "Apple", "iPhone 15"];
+     document.write(categories.toString() + "<br>");
+     document.write(categories.join(" > "));
+</script>
+
+Ex:
+<script>
+     var categories = ["Home", "Electronics", "Mobiles", "Apple", "iPhone 15"];
+     categories.map(function(value, index){
+          document.write(`<li> [${index+1}] ${value}</li>`);
+     })
+</script>
+
+ - You can use explicit techniques for reading array properties and values.
+
+    a) for..in            : It reads and returns all properties of array.
+    b) for..of            : It reads and returns all elements of array.
+
+Syntax:
+    for(var property  in array)
+    {
+    }
+
+    for(var value of array)
+    {
+    }
+
+Ex:
+<script>
+     var categories = ["Home", "Electronics", "Mobiles", "Apple", "iPhone 15"];
+     for(var property in categories){
+          document.write(`[${property}] : ${categories[property]}<br>`);
+     }
+</script>
+
+4. Filtering Elements
+
+    slice()        : It returns only the elements between specified index.
+
+    find()        : It uses a callback and returns the first occurrence element
+                  that matches the given condition.
+
+    filter()        : It uses a callback that find and returns all elements that
+                  match given condition.
+
+Syntax:
+     values.slice(startIndex, endIndex);
+     
+     values.find(function(value){
+              return value_condition;        => returns only one value
+    })
+
+    values.filter(function(value){
+          return value_condition;        => returns array of values [ ]
+    })
+
+Ex:
+<script>
+    var values = [30000, 70000, 72000, 34500, 63000];
+    var result = values.filter(function(value){
+        return value > 50000;
+    });
+    document.write(result);
+</script>
+
+5. Sorting Elements
+
+        sort()        : It arranges elements in ascending order and returns all
+                      elements.
+        reverse()        : It returns all elements in reverse order.
+
+Syntax:
+    values.sort()
+    values.reverse()
+    values.sort().reverse();
+
+Ex:
+<script>
+    var values = [30000, 70000, 72000, 34500, 63000];
+    document.write(values.sort().reverse());
+</script>
+
+6. Adding Elements into array
+
+    push()        : Adds new element(s) as last item.
+    unshift()        : Adds new element(s) as first item.
+    splice()        : Adds new element(s) at specific position.
+
+Syntax:
+    values.push(item1, item2..);
+    values.unshift(item1, item2..);
+    values.splice(startIndex, deleteCount, item1, item2..);
+
+Note: Delete Count is set to zero [0] to add items without deleting the existing.
+
+Ex:
+<script>
+     var categories = ["Electronics", "Fashion"];
+
+
+     categories.splice(1,0,"Footwear");
+
+     categories.map(function(category, index){
+          document.write(`[${index}] ${category} <br>`);
+     })
+</script>
+
+7. Removing Array elements
+
+      pop()        : It removes and returns the last element.
+      shift()        : It removes and returns the first element.
+      splice()        : It removes and returns specific element(s).
+
+Syntax:
+      values.pop();    
+      values.shift();
+      values.splice(startIndex, deleteCount);
+
+Ex:
+<script>
+     var categories = ["Electronics", "Fashion", "Footwear"];
+
+     console.log(categories.splice(1,2));
+
+     categories.map(function(category, index){
+          document.write(`[${index}] ${category} <br>`);
+     })
+</script>
+
+Dynamically adding elements into HTML page:
+
+1. You can create any HTML element dynamically by using the document method.
+
+     document.createElement("elementName");
+     document.createElement("img");
+     document.createElement("button");
+
+2. Assign a memory reference for new element.
+
+    var  pic = document.createElement("img");
+    var  btn  = document.createElement("button");
+
+3. Define properties for element
+
+     pic.src=" "
+     pic.height = ""
+     pic.alt=""
+
+     btn.innerHTML = ""
+     btn.className=""
+     btn.name=""
+
+4. Add element into page, you can directly add to body or into any specific parent.
+
+Syntax:
+        document.querySelector("body").appendChild(pic);
+        document.getElementById("container").appendChild(btn);
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          function ButtonClick(){
+               var img = document.createElement("img");
+               img.src = "../public/images/women-fashion.jpg";
+               img.width = "200";
+               img.height= "200";
+               document.getElementById("container").appendChild(img);
+          }
+     </script>
+</head>
+<body>
+     <button onclick="ButtonClick()">Your Profile Photo</button>
+     <br>
+     <div id="container">
+         
+     </div>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          function bodyload(){
+               var ol = document.createElement("ol");
+               ol.type = "A";
+
+               var item1=  document.createElement("li");
+               var item2=  document.createElement("li");
+
+               item1.innerHTML = "HTML";
+               item2.innerHTML = "CSS";
+
+               ol.appendChild(item1);
+               ol.appendChild(item2);
+
+               document.querySelector("body").appendChild(ol);
+          }
+     </script>
+</head>
+<body onload="bodyload()">
+     
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          var categories = ["All", "Electronics",  "Footwear", "Fashion"];
+
+          function bodyload(){
+              categories.map(function(category){
+                   var li = document.createElement("li");
+                   li.innerHTML = category;
+                   document.querySelector("ol").appendChild(li);
+
+                   var option = document.createElement("option");
+                   option.text = category;
+                   option.value = category;
+                   document.querySelector("select").appendChild(option);
+
+              })
+          }
+     </script>
+</head>
+<body onload="bodyload()">
+     <ol>
+
+     </ol>
+     <select>
+
+     </select>
+</body>
+</html>

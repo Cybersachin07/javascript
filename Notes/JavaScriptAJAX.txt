@@ -1,0 +1,155 @@
+1. Distributed Computing
+- Distributed computing allows communication between two applications running on two different machines.
+- It also allows communication between two different objects in 2 different process of same machine.
+
+2. Distributed Computing Technologies
+   
+    CORBA    - Common Object Request Broken Architecture  - 14+ languages
+    DCOM    - Distribute Component Object Model - VB
+    RMI        - Remote Method Invocation - J2EE
+    EJB        - Enterprise Java Beans - JAVA
+    Webservice - Known to all languages
+    Remoting  - Used by .NET
+
+3. Communication Specification
+
+    SOAP    
+    REST
+    JSON
+
+    Distributed application have service provider and service consumer.
+
+SOAP
+ - Service Oriented Architecture Protocol
+ - Service Consumer sends an XML request
+       
+        <Products>
+            <Product>
+                <Category> Electronics </Category>
+            </Product>
+        </Products>
+
+- Service Provider sends an XML response
+
+        <Products>
+            <Product>
+            <Id>2</Id>
+            <Name>TV</Name>
+            <Category>Electronics</Category>
+           </Product>
+            .....
+        </Products>
+
+REST
+- Representational State Transfer
+- Service consumer sends a simple query request.
+
+    https://server.com/products?category=electronics
+
+- Service provider sends response as XML or JSON.
+
+       [
+        {
+          Id: 2,
+          Name : "TV",
+          Category: "Electronics"
+        }
+        ..
+      ]
+
+JSON
+- JavaScript Object Notation
+- Service consumer sends a JSON request.
+- Service provider sends an JSON response.
+
+Issues with Web Service:
+- It uses SOAP.
+- It can run only on web server.
+- It can use only HTTP.
+
+Web API
+- Application Programming Interface.
+- It uses REST.
+- It can run on any server.
+- It can be used with any protocol.
+
+                          JavaScript AJAX
+- Asynchronous JavaScript And XML.
+- It enables partial post back.
+- It allows to load new details into page without reloading the page.
+- JavaScript uses "XMLHttpRequest" object to handle AJAX.
+
+1. Create XMLHttpRequest object
+
+    var http = new XMLHttpRequest();
+
+2. Configure the request by using "open()" method
+
+    http.open("method", "url", async:boolean);
+
+    method : get or post
+    url         : resource path
+        async   : true - can access without blocking other requests.
+
+3. Send the request
+
+    http.send();
+
+4. Execute the request by using "onreadystatechange" function
+
+    http.onreadystatechange = function(){
+
+    }
+
+5. Request execution comprises of 4 phases
+        1 = Initial
+        2 = Success
+        3 = Complete
+        4 = Ready
+
+Syntax:
+        if(http.readyState == 4)
+        {
+             // http.responseText,  
+                http.responseHTML,
+            http.responseXML
+        }
+
+
+Ex:
+1. Add a new folder "data"
+2. Add a new file into data folder  "help.txt"
+3. demo.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function HelpClick(){
+             var http = new XMLHttpRequest();
+
+             http.open("get", "../data/help.txt", true);
+
+             http.send();
+
+             http.onreadystatechange = function(){
+
+                  if(http.readyState==4){
+                       document.getElementById("container").innerHTML = http.responseText;
+                  }
+
+             }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="HelpClick()">Get Help</button>
+    <br><br>
+    <pre id="container">
+
+    </pre>
+</body>
+</html>
