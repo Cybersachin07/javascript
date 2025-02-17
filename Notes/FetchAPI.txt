@@ -1,0 +1,217 @@
+FAQ: What are the issues with XMLHttpRequest  Object?
+Ans:
+     - It is not implicitly async.
+     - It requires explicit async to turn ON. [async:true]
+     - Response is always text or XML format.
+     - You have to explicitly parse the data if it is in any another format.
+     - It requires status to check explicitly. [readyState]
+     - It is not very good in error handling.
+     - Can't handle XSRF, XSS like issues.
+
+
+                          Fetch Promise
+- JavaScript promise configures implicitly async method.
+- It provides resolve and reject actions to perform.
+- Resolve executes when request is success.
+- Reject executes when request fails.
+- It provides simplified methods to communicate with API.
+- It returns response always in binary format.
+- Explicit conversion is required.
+- Error handling issues and security issues are similar to XMLHttpRequest.
+
+
+Syntax:
+    fetch("url").then(function(response){on success}).catch(function(error){}).finally(function(){executes always})
+
+Syntax:
+    fetch('../data/product.json')
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+
+    })
+    .catch(function(error){
+    })
+    .finally(function(){
+    })
+
+Ex:
+data/product.json
+
+{
+    "title": "Apple iPhone 16 (Black , 156 GB)",
+    "price" : 69999,
+    "rating": {"rate":4.5, "ratings":43222, "reviews":445},
+    "offers": [
+    "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+
+    "Bank Offer10% off up to ₹750 on Canara Bank Credit and Credit EMI Transactions, on orders of ₹5,000 and aboveT&C",
+
+    "Bank OfferExtra ₹500 off on Canara Bank Credit and Credit EMI Transactions, on orders of ₹25,000 and aboveT&C",
+
+    "Special PriceGet extra ₹9901 off (price inclusive of cashback/coupon)T&C"
+    ],
+    "image": "../public/images/iphone-black.jpg"
+}
+
+Demo.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function bodyload() {
+            var product = {title:'', price:0, rating:{rate:0, ratings:0, reviews:0}, offers:[], image:''};
+
+            fetch('../data/product.json')
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                product = data;
+                     document.getElementById("imgProduct").src = product.image;
+                     document.getElementById("lblTitle").innerHTML = product.title;
+                     document.getElementById("lblRating").innerHTML = `${product.rating.rate} <span class='bi bi-star-fill'></span>`;
+                     document.getElementById("lblReviews").innerHTML = `${product.rating.ratings.toLocaleString()} ratings & ${product.rating.reviews} reviews`;
+                     document.getElementById("lblPrice").innerHTML = product.price.toLocaleString();
+                     product.offers.map(function(offer){
+                          var li = document.createElement("li");
+                          li.innerHTML = `<span class='text-secondary ms-2'>${offer}</span>`;
+                          li.className = "bi bi-tag-fill text-success my-3";
+                          document.getElementById("lstOffers").appendChild(li);
+                     })
+            })
+            .catch(function(error){
+                 console.log(error);
+            })
+            .finally(function(){
+                 console.log(`Request End`);
+            })
+           
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <div class="mt-4 row">
+        <div class="col-3">
+            <img id="imgProduct" width="100%">
+        </div>
+        <div class="col-9">
+            <div class="fs-5" id="lblTitle"></div>
+            <div class="my-3">
+                <span class="badge bg-success text-white rounded p-2" id="lblRating"></span>
+                <span id="lblReviews" class="fw-bold ms-1 text-secondary"></span>
+            </div>
+            <div>
+                <h2 id="lblPrice"></h2>
+            </div>
+            <div>
+                <h5>Available Offers</h5>
+                <ul id="lstOffers" class="list-unstyled">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+Ex: Products Table
+
+[
+    {
+        "title": "Apple iPhone 16 (Black , 128 GB)",
+        "price" : 69999,
+        "rating": {"rate":4.5, "ratings":43222, "reviews":445},
+        "offers": [
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+   
+        "Bank Offer10% off up to ₹750 on Canara Bank Credit and Credit EMI Transactions, on orders of ₹5,000 and aboveT&C",
+   
+        "Bank OfferExtra ₹500 off on Canara Bank Credit and Credit EMI Transactions, on orders of ₹25,000 and aboveT&C",
+   
+        "Special PriceGet extra ₹9901 off (price inclusive of cashback/coupon)T&C"
+        ],
+        "image": "../public/images/iphone-black.jpg"
+    },
+    {
+        "title": "Apple iPhone 16 (Pink , 256 GB)",
+        "price" : 79999,
+        "rating": {"rate":4.8, "ratings":63222, "reviews":2145},
+        "offers": [
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+   
+        "Bank Offer10% off up to ₹750 on Canara Bank Credit and Credit EMI Transactions, on orders of ₹5,000 and aboveT&C",
+   
+        "Bank OfferExtra ₹500 off on Canara Bank Credit and Credit EMI Transactions, on orders of ₹25,000 and aboveT&C",
+   
+        "Special PriceGet extra ₹9901 off (price inclusive of cashback/coupon)T&C"
+        ],
+        "image": "../public/images/iphone-pink.jpg"
+    }
+]
+
+
+Demo.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+        function bodyload(){
+            fetch('../data/products.json')
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(products){
+                 products.map(function(product){
+                      var tr = document.createElement("tr");
+                      var tdTitle = document.createElement("td");
+                      var tdPrice = document.createElement("td");
+                      var tdImage = document.createElement("td");
+                      var tdActions = document.createElement("td");
+
+                      tdTitle.innerHTML = product.title;
+                      tdPrice.innerHTML = product.price.toLocaleString('en-in');
+                      tdImage.innerHTML = `<img src=${product.image} width="100" height="100">`;
+                      tdActions.innerHTML = `<button class="bi mx-2 bi-eye btn btn-primary"></button> <button class="bi mx-2 bi-pen btn btn-warning"></button> <button class="bi mx-2 bi-trash btn btn-danger"></button>`
+
+                      tr.appendChild(tdTitle);
+                      tr.appendChild(tdImage);
+                      tr.appendChild(tdPrice);
+                      tr.appendChild(tdActions);
+
+                      document.querySelector("tbody").appendChild(tr);
+                 })
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <h2>Apple Mobiles</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th width="300">Title</th>
+                <th width="200">Preview</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
