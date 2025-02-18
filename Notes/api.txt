@@ -1,0 +1,215 @@
+Weather API  -
+
+1. Visit   "http://openweathermap.org/&quot;
+
+2. Signup with your email
+
+3. Sign in into your account
+
+4. Go to "API" category
+
+5. Scroll to "Current Weather Data"
+
+6. Select "API Doc"
+
+7. Select "Built-in API request by city name"
+
+  https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}&units=metric
+
+     q=Hyderabad
+     appid= your_api_key   [from your profile API keys]
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .widget {
+            width: 700px;
+            height: 300px;
+            background-image: url("../public/images/weather.jpg");
+            background-size: 50% 100%;
+            background-repeat: no-repeat;
+            background-position: center right;
+            background-color: rgb(7, 139, 192);
+            box-shadow: 5px 5px 2px black;
+            display: grid;
+            grid-template-columns: 6fr 6fr;
+        }
+        #lblTemp {
+            font-size: 50px;
+            font-family: Arial;
+            color:white;
+        }
+    </style>
+    <script>
+        var cityName = '';
+        function LoadWeatherData(){
+            var api_key = "1318ca6725c69160d346c41fc0612596";
+            var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${api_key}&units=metric`;
+
+            fetch(url)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                console.log(data);
+                document.getElementById("lblCity").innerHTML = `${data.name.toUpperCase()}<br><span class='text-warning fs-4'>${data.weather[0].description.toUpperCase()}</span>`;
+                document.getElementById("lblTemp").innerHTML = ` <span class='bi bi-sun-fill'></span> ${Math.round(data.main.temp)} &deg; C`;
+                document.getElementById("lblWind").innerHTML = `${data.wind.speed} KMPH`;
+                document.getElementById("lblHumid").innerHTML = `${data.main.humidity} %`;
+            })
+        }
+        function SearchClick(){
+            cityName = document.getElementById("txtCity").value;
+            LoadWeatherData();
+        }
+        function CityChange(){
+            cityName = document.getElementById("lstCities").value;
+            LoadWeatherData();
+        }
+    </script>
+</head>
+<body>
+   <div class="widget">
+        <div style="padding: 20px;">
+            <div class="input-group">
+                <input type="text" id="txtCity" placeholder="Enter City Name" class="form-control">
+                <button onclick="SearchClick()" class="bi bi-search btn btn-warning"></button>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="height:100%">
+                <div>
+                    <span id="lblTemp"></span>
+                    <dl class="text-light row">
+                        <dt class="col-3">Wind</dt>
+                        <dd class="col-9" id="lblWind"></dd>
+                        <dt class="col-3">Humidity</dt>
+                        <dd class="col-9" id="lblHumid"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 100px;">
+            <select id="lstCities" class="form-select" onchange="CityChange()">
+                <option>Frequently Viewed</option>
+                <option>Delhi</option>
+                <option>Hyderabad</option>
+                <option>Chennai</option>
+            </select>
+            <h2 id="lblCity"></h2>
+           
+        </div>
+   </div>
+</body>
+</html>
+     
+                             Nasa API
+                           (api.nasa.gov)
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function bodyload(){
+            fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY&quot;)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                  data.photos.map(function(photo){
+                        var div = document.createElement("div");
+                        div.className = "card m-2 p-2";
+                        div.style.width = "250px";
+                        div.innerHTML = `
+                           <a href=${photo.img_src} target="_blank"><img class="card-img-top" src=${photo.img_src} height="130"></a>
+                           <div class="card-header">
+                               <h4>${photo.id}</h4>
+                           </div>
+                           <div class="card-body">
+                               <dl>
+                                  <dt class="bi bi-camera"> Camera</dt>
+                                  <dd>${photo.camera.full_name}</dd>
+                                  <dt class="bi bi-rocket"> Rover </dt>
+                                  <dd>${photo.rover.name}</dd>
+                                </dl>
+                           </div>
+                        `;
+                        document.querySelector("section").appendChild(div);
+                  })
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <h2>Mars Rover Photos</h2>
+    <section class="d-flex flex-wrap">
+
+    </section>
+</body>
+</html>
+
+
+Ex: Image Clickable
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function bodyload(){
+            fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY&quot;)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                  data.photos.map(function(photo){
+                        var div = document.createElement("div");
+                        div.className = "card m-2 p-2";
+                        div.style.width = "250px";
+                        div.innerHTML = `
+                           <a href=${photo.img_src} target="_blank"><img class="card-img-top" src=${photo.img_src} height="130"></a>
+                           <div class="card-header">
+                               <h4>${photo.id}</h4>
+                           </div>
+                           <div class="card-body">
+                               <dl>
+                                  <dt class="bi bi-camera"> Camera</dt>
+                                  <dd>${photo.camera.full_name}</dd>
+                                  <dt class="bi bi-rocket"> Rover </dt>
+                                  <dd>${photo.rover.name}</dd>
+                                </dl>
+                           </div>
+                        `;
+                        document.querySelector("section").appendChild(div);
+                  })
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <h2>Mars Rover Photos</h2>
+    <section class="d-flex flex-wrap">
+
+    </section>
+</body>
+</html>
