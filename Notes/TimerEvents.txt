@@ -1,0 +1,159 @@
+Timer Events
+setTimeout():
+- The tasks given to a process are executed one after another with in a fraction of milli seconds.
+- You can delay the execution of task by locking it in the memory for a specific duration of time.
+- The process of locking a task and delaying its execution is known as "Debouncing".
+
+Syntax:
+     setTimeout(function(){ }, interval);        interval  1000 ms = 1sec
+
+clearTimeout():
+- It can remove the task from memory before it is released into process.
+- It requires a memory reference name where the task is stored.
+
+Syntax:
+          var ref =  setTimeout(function(){}, interval);
+
+           clearTimeout(ref);
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+
+        function Level1(){
+            document.getElementById("lblMsg").innerHTML = `10% Volume Increased`;
+        }
+        function Level2(){
+            document.getElementById("lblMsg").innerHTML = `50% Volume Increased`;
+        }
+        function Level3(){
+            document.getElementById("lblMsg").innerHTML = `100% Volume Increased`;
+        }
+        var thread1, thread2, thread3;
+
+        function VolumeClick(){
+          thread1 =  setTimeout(Level1, 3000);
+          thread2 =   setTimeout(Level2, 6000);
+          thread3 =   setTimeout(Level3, 10000);
+        }
+        function CancelClick(){
+            clearTimeout(thread2);
+        }
+    </script>
+</head>
+<body>
+    <button onclick="VolumeClick()" class="bi bi-volume-up"></button>
+    <button onclick="CancelClick()" class="bi bi-volume-mute">Cancel 50%</button>
+    <br><br>
+    <span id="lblMsg"></span>
+</body>
+</html>
+
+setInterval():
+- It is used to "throttle".
+- "throttle" is a process of executing set of statements repeatedly until stopped.
+- It loads a task into memory and releases a copy into process, it repeats until removed from memory.
+
+Syntax:
+    setInterval(function(){}, interval);
+
+- You can clearInterval(), which removes the task from memory.
+
+Syntax:
+    clearInterval(refName);
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+        function Clock(){
+            var now = new Date();
+            var time = now.toLocaleTimeString();
+            document.querySelector("h1").innerHTML = time;
+        }
+        var thread;
+        function bodyload(){
+           thread = setInterval(Clock,1000);
+        }
+        function StopClick(){
+            clearInterval(thread);
+        }
+        function ResumeClick(){
+            thread = setInterval(Clock,1000);
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <button onclick="StopClick()">Stop</button>
+    <button onclick="ResumeClick()">Resume</button>
+    <h1 align="center"></h1>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        var progressValue = 1;
+        function StartProgress(){
+            progressValue++;   // progressValue = progressValue + 1
+            document.getElementById("progressBar").value = progressValue;
+            document.getElementById("lblStatus").innerHTML = `${progressValue} % Completed`;
+            if(progressValue===100){
+                document.getElementById("imgContainer").style.display = "block";
+                document.getElementById("progressContainer").style.display = "none";
+                clearInterval(thread);
+            }
+        }
+        var thread;
+        function LoadClick(){
+            document.getElementById("btnContainer").style.display = "none";
+            document.getElementById("progressContainer").style.display = "block";
+            thread = setInterval(StartProgress,100);
+        }
+        function PauseClick(){
+            clearInterval(thread);
+            document.getElementById("lblStatus").innerHTML = `${progressValue} % Paused`;
+        }
+        function PlayClick(){
+            thread = setInterval(StartProgress,100);
+            document.getElementById("lblStatus").innerHTML = `${progressValue} % Completed`;
+        }
+    </script>
+</head>
+<body class="container-fluid d-flex justify-content-center align-items-center" style="height:100vh">
+    <div>
+        <div id="btnContainer">
+            <button onclick="LoadClick()" class="btn btn-primary">Load Image</button>
+        </div>
+        <div id="progressContainer" class="text-center" style="display: none;">
+            <progress min="1"  style="width: 400px; height: 30px;" max="100" id="progressBar"></progress>
+            <div>
+                <button onclick="PlayClick()" class="btn btn-primary bi bi-play mx-2"></button>
+                <button onclick="PauseClick()" class="btn btn-warning bi bi-pause"></button>
+            </div>
+            <p id="lblStatus" class="text-center"></p>
+        </div>
+        <div id="imgContainer" style="display: none;">
+            <img src="../public/images/women-fashion.jpg" width="400" height="400">
+        </div>
+    </div>
+</body>
+</html>
